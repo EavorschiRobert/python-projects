@@ -4,16 +4,24 @@ import turtle as t
 class Snake:
     def __init__(self):
         self.snake = []
+        self.head = 0
         self.create_snake()
 
     def create_snake(self):
         for i in range(3):
-            square = t.Turtle('square', 20)
-            square.color('white')
-            square.penup()
-            if i > 0:
-                square.goto(x=-i * 20, y=0)
-            self.snake.append(square)
+            x = -i * 20
+            self.add_segment((x, 0))
+        self.head = self.snake[0]
+
+    def add_segment(self, position):
+        square = t.Turtle('square', 20)
+        square.color('white')
+        square.penup()
+        square.goto(x=position[0], y=position[1])
+        self.snake.append(square)
+
+    def increase_snake(self):
+        self.add_segment(self.snake[-1].position())
 
     def move(self):
         for s in range(len(self.snake) - 1, -1, -1):
@@ -22,6 +30,8 @@ class Snake:
             else:
                 position = self.snake[s - 1].position()
                 self.snake[s].goto(position[0], position[1])
+
+
 
     def turn_left(self):
         if self.snake[0].heading() != 0:
