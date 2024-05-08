@@ -28,6 +28,7 @@ while states_count < 50:
         y_coor = find.y.values[0]
         writes.goto(x=x_coor, y=y_coor)
         writes.write(find.state.values[0])
+    turtle.mainloop()
 
 states_list = states['state'].to_list()
 for i in guessed_states:
@@ -42,4 +43,4 @@ answers.to_csv('./states_to_learn.csv')
 # def get_mouse_click_coor(x, y):
 #     print(x, y)
 # turtle.onscreenclick(get_mouse_click_coor)
-turtle.mainloop()
+
